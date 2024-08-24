@@ -1,9 +1,10 @@
-package com.example.backend.firebase;
+package com.example.backend.Firebase;
 
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 import jakarta.annotation.PostConstruct;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 
 import java.io.FileInputStream;
@@ -12,10 +13,18 @@ import java.io.FileInputStream;
 @Configuration
 public class FirebaseConfig {
 
+    @Value("${firbase.firebase-config-file}")
+    private String firebaseConfigPath;
+
+    @Value("${firbase.firebase-bucket}")
+    private String firebaseBucket;
+
     @PostConstruct
-    public void init() {
+    public void init( ) {
+        System.out.println(firebaseConfigPath);
         try {
-            FileInputStream refreshToken = new FileInputStream("path/to/refreshToken.json");
+
+            FileInputStream refreshToken = new FileInputStream(firebaseConfigPath);
 
             FirebaseOptions options = FirebaseOptions.builder()
                     .setCredentials(GoogleCredentials.fromStream(refreshToken))
