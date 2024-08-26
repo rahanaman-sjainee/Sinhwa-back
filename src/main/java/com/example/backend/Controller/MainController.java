@@ -43,6 +43,11 @@ public class MainController {
     @Value("${twitter.consumer-key-secret}")
     private String consumerKeySecret;
 
+    @Value("${twitter.callbackUrl}")
+    private String callbackURL;
+
+    @Autowired
+    private final OAuth1Operations twitterAuth;
 
     @GetMapping("/")
     public String index() {
@@ -51,15 +56,13 @@ public class MainController {
         return "test";
 
     }
-    private String callbackUrl = "http://192.168.219.101:8080//login/twitter/process";
     @GetMapping("/login/twitter")
     public void twittertest(HttpServletResponse response) throws IOException {
-        System.out.println(consumerKey);
-        System.out.println(consumerKeySecret);
+
         TwitterConnectionFactory connectionFactory =
                 new TwitterConnectionFactory(consumerKey,consumerKeySecret);
         OAuth1Operations oauthOperations = connectionFactory.getOAuthOperations();
-        OAuthToken requestToken = oauthOperations.fetchRequestToken("http://192.168.219.101:8080/login/twitter/process", null);
+        OAuthToken requestToken = twitterAuth.fetchRequestToken(callbackURL, null);
         System.out.println(requestToken);
 
         String token = requestToken.getValue();

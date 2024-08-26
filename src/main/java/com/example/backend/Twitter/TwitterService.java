@@ -1,5 +1,6 @@
 package com.example.backend.Twitter;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -18,7 +19,16 @@ public class TwitterService {
     @Value("${twitter.consumer-key-secret")
     private String consumerKeySecret;
 
+
+    @Autowired
+    private final OAuth1Operations twitterAuth;
+
+
     private String callbackUrl = "http://localhost:8080/social/twitter";
+
+    public TwitterService(OAuth1Operations twitterAuth) {
+        this.twitterAuth = twitterAuth;
+    }
 
     public String getTwitterUrl() {
         TwitterConnectionFactory connectionFactory =

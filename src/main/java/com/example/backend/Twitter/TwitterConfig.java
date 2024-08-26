@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.batch.BatchTransactionManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.social.oauth1.OAuth1Operations;
 import org.springframework.social.twitter.api.Twitter;
 import org.springframework.social.twitter.api.impl.TwitterTemplate;
 import org.springframework.social.twitter.connect.TwitterConnectionFactory;
@@ -22,14 +23,14 @@ public class TwitterConfig {
     @Value("${twitter.consumer-key-secret}")
     private String consumerKeySecret;
 
-    @Bean
-    public String getConsumerKey() {
-        return consumerKey;
-    }
+
+
 
     @Bean
-    public String getConsumerKeySecret() {
-        return consumerKeySecret;
+    public OAuth1Operations twitterAuth() {
+        TwitterConnectionFactory connectionFactory =
+                new TwitterConnectionFactory(consumerKey,consumerKeySecret);
+        return connectionFactory.getOAuthOperations();
     }
 
     @PostConstruct
@@ -37,6 +38,8 @@ public class TwitterConfig {
         System.out.println(consumerKey);
         System.out.println(consumerKeySecret);
     }
+
+
 
 
 
