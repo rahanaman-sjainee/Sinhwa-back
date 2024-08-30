@@ -1,4 +1,4 @@
-package com.example.backend.Twitter;
+package com.example.backend.Auth.Twitter;
 
 import jakarta.annotation.PostConstruct;
 import lombok.Getter;
@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 
 @Configuration
-
 public class TwitterConfig {
 
     @Value("${twitter.consumer-key}")
