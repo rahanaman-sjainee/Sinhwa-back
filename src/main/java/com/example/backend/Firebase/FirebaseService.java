@@ -20,7 +20,7 @@ import java.io.InputStream;
 public class FirebaseService {
     private static String TEST_COLLECTION_NAME = "test";
 
-    @Value("${firbase.firebase-bucket}")
+    @Value("${firebase.firebase-bucket}")
     private String firebaseBucket;
 
     public String uploadFiles(MultipartFile file, String path,String fileName) throws IOException {

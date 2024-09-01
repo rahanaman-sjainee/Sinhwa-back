@@ -30,11 +30,16 @@ dependencies {
     implementation 'com.google.firebase:firebase-admin:9.2.0'
     implementation 'com.google.auth:google-auth-library-oauth2-http:1.19.0'
     ///firebase initiation dependencies end//
+
+    //java 8 version need specific version
     implementation 'com.google.guava:guava:31.1-jre'
 
 
 
-    implementation 'org.twitter4j:twitter4j-core:4.1.1'
+    implementation 'org.springframework.social:spring-social-twitter:1.1.2.RELEASE'
+    implementation 'org.apache.httpcomponents.client5:httpclient5'
+    implementation 'org.apache.httpcomponents.core5:httpcore5'
+
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     compileOnly 'org.projectlombok:lombok'

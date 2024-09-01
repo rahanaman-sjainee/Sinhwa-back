@@ -13,10 +13,10 @@ import java.io.FileInputStream;
 @Configuration
 public class FirebaseConfig {
 
-    @Value("${firbase.firebase-config-file}")
+    @Value("${firebase.firebase-config-file}")
     private String firebaseConfigPath;
 
-    @Value("${firbase.firebase-bucket}")
+    @Value("${firebase.firebase-bucket}")
     private String firebaseBucket;
 
     @PostConstruct
